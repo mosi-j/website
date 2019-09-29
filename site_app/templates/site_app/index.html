@@ -1,0 +1,15 @@
+{% extends "site_app/base.html" %}
+{% block title %}
+    index
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <P>welcome {{ user.first_name }}</P>
+        <P><a href="{% url 'back_test_app:back_test' %}">back test</a></P>
+        <P><a href="{% url 'back_test_app:recent_result' %}">view recent result</a></P>
+    {% else %}
+        <h3>for use site you need login</h3>
+        <P><a href="{% url 'login' %}">login</a></P>
+    {% endif %}
+{% endblock %}

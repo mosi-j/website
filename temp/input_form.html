@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}
+    input form
+{% endblock %}
+
+{% block content %}
+
+    <p>{{ form.changed_data }}</p>
+    <p>{{ form.fields.acsepted_symbol_list }}</p>
+
+    <h1>enter data to run</h1>
+    <div>
+        <form action="/run/" method="post">
+            {% csrf_token %}
+            {% for f in form %}
+                {{ f.label }}
+                {{ f }}
+                <p></p>
+            {% endfor %}
+            <p></p>
+        <p>-----------------</p> <p></p> <p>-----------------</p>
+
+        <p style= 'overflow:hidden;height:200px; width:20%; overflow-y:scroll;'>
+            {% for f in form.acsepted_symbol_list %}
+                {{ f }}
+                <br>
+            {% endfor %}
+        </p>
+
+
+
+            <input type="submit" name="action" value="Submit">
+            <input type="submit" name="action" value="set symbol">
+        </form>
+    </div>
+
+{% endblock %}
+

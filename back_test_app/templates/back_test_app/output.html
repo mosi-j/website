@@ -1,0 +1,53 @@
+{% extends "site_app/base.html" %}
+{% block title %}
+    index
+{% endblock %}
+
+{% if messate %}
+    {% block message %}
+        {% for msg in message %}
+            <p style="background-color: orangered">{{ msg }}</p>
+        {% endfor %}
+    {% endblock %}
+{% endif %}
+
+{% block content %}
+    <h2>output result</h2>
+    <hr>
+    <div class="row" style="margin: 10px">
+        {% for symbol in output %}
+        <table style="border:solid; border-color: black;">
+                <tr style="border-bottom:solid; border-color: black;"><td style="background-color: lavenderblush;font-weight: bold; padding: 4px;">symbol: {{ symbol.0 }}</td></tr>
+            {% for opt in symbol.1 %}
+                <tr ><td style="border:solid; border-color: black;background-color: lightgray;font-weight: bold; padding: 4px;">output type: {{ opt.0 }}</td></tr>
+                {% for item in opt.1 %}
+                    <tr><td style=" padding: 4px;"><p style="border-bottom: dot-dot-dash;border-color: chocolate;"><span style="font-weight: bold;">{{ item.0 }}:</span> {{ item.1 }}</p></td></tr>
+                {% endfor %}
+            {% endfor %}
+        </table>
+        <hr>
+        {% endfor %}
+    </div>
+
+    <hr>
+    {% if run_time %}
+        <div class="row" style="margin: 10px">
+            run time: {{ run_time }}
+        </div>
+    {% endif %}
+
+    <hr>
+    <div class="row" style="margin: 10px">
+        <form name="myform" action="" method="post">
+            {% csrf_token %}
+            <div class="row col-sm-4">
+                <input class="" type="submit" name="Btn_action" value="back_to_run">
+            </div>
+
+            <div class="hidden">
+                {{ form }}
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,118 @@
+{% extends "site_app/base.html" %}
+{% block title %}
+    index
+{% endblock %}
+
+{% if messate %}
+    {% block message %}
+        {% for msg in message %}
+            <p style="background-color: orangered">{{ msg }}</p>
+        {% endfor %}
+    {% endblock %}
+{% endif %}
+
+{% block content %}
+    <div style="padding: 10px">
+    <h2>inter back test params</h2>
+    <hr>
+    <form name="myform" action="" method="post">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col-sm-4">{{ form.start_date_time.label }} {{ form.start_date_time }}</div>
+            <div class="col-sm-4">{{ form.end_date_time.label }} {{ form.end_date_time }}</div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-4">{{ form.adjusted_type.label }} {{ form.adjusted_type }}</div>
+            <div class="col-sm-4">{{ form.time_frame.label }} {{ form.time_frame }}</div>
+        </div>
+        <br>
+        <div class="row" >
+            <div class="col-sm-4">{{ form.max_benefit_up.label }} {{ form.max_benefit_up }}</div>
+            <div class="col-sm-4">{{ form.max_benefit_down.label }} {{ form.max_benefit_down }}</div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-4">{{ form.order_total.label }} {{ form.order_total }}</div>
+            <div class="col-sm-4">{{ form.order_same.label }} {{ form.order_same }}</div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-4">{{ form.data_type.label }} {{ form.data_type }}</div>
+        </div>
+        <br>
+        <div class="row">
+            <p class="col-sm-1">{{ form.output_format.label }}</p>
+
+            <div class="col-sm-3" style= 'overflow:hidden;max-height:100px; overflow-y:scroll;'>
+                {% for f in form.output_format %}
+                    {{ f }}
+                    <br>
+                {% endfor %}
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <p class="col-sm-1">{{ form.accepted_symbol_list.label }}:</p>
+
+            <div class="col-sm-3" style= 'overflow:hidden;max-height:150px; overflow-y:scroll;'>
+                {% for f in form.accepted_symbol_list %}
+                    {{ f }}
+                    <br>
+                {% endfor %}
+            </div>
+            <div>
+                <input class="" type="submit" name="Btn_action" value="select_all_symbol"><br><br>
+                <input class="" type="submit" name="Btn_action" value="reset_selected_symbol"><br><br>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-4">{{ form.strategy.label }}{{ form.strategy }}</div>
+            <div class="col-sm-4">{{ form.current_strategy_name.label }} {{ form.current_strategy_name }}</div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="row col-sm-10">
+                <div class="col-sm-2">
+                    {{ form.strategy_variable.label }}
+                </div>
+                <div class="col-sm-10">
+                    {{ form.strategy_variable }}
+                </div>
+                <br>
+                <div class="col-sm-2">
+                    {{ form.strategy_context.label }}
+                </div>
+                <div class="col-sm-10">
+                    {{ form.strategy_context }}
+                </div>
+            </div>
+            <div class="row col-sm-2">
+                <input class="" type="submit" name="Btn_action" value="load_strategy"><br><br>
+                <input class="" type="submit" name="Btn_action" value="update_strategy"><br><br>
+                <input class="" type="submit" name="Btn_action" value="save_strategy"><br><br>
+                <input class="" type="submit" name="Btn_action" value="test_strategy">
+            </div>
+        </div>
+
+        <!--div class="row">
+            <div class="row col-sm-12">
+                <input class="" type="submit" name="Btn_action" value="load_strategy">
+                <input class="" type="submit" name="Btn_action" value="update_strategy">
+                <input class="" type="submit" name="Btn_action" value="save_strategy">
+                <input class="" type="submit" name="Btn_action" value="test_strategy">
+            </div>
+        </div-->
+        <hr>
+        <div class="row col-sm-4">
+            <input class="" type="submit" name="Btn_action" value="Submit">
+        </div>
+
+        <div id="hidden_field">
+
+        </div>
+    </form>
+    </div>
+{% endblock %}

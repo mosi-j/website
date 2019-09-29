@@ -1,0 +1,58 @@
+{% load static %}
+<html>
+<head>
+    <title>input form {% block title %}{% endblock %}</title>
+    <script type="text/javascript">
+         function load()
+         {
+              window.document.myform.submit(value="Submit");
+              return;
+         }
+     </script>
+</head>
+
+
+
+{% if form.action_type.value == 'Submit' %}
+    <body onload="load()">
+{% else %}
+    <body>
+{% endif %}
+
+    {% block content %}{% endblock %}
+
+        <h1>enter data to run</h1>
+        <div>
+            {% if form.action_type.value == 'Submit' %}
+                <form name="myform" action="/result/" method="post">
+                <p>redi</p>
+            {% else %}
+                <form name="myform" action="/run/" method="post">
+                                <p>norm</p>
+
+            {% endif %}
+                {% csrf_token %}
+                {% for f in form %}
+                    {% if not f.is_hidden %}
+                    {{ f.label }}
+                    {{ fbase0.html }}
+                    {% endif %}
+                    <p></p>
+                {% endfor %}
+                <p></p>
+            <p>-----------------</p> <p>{{ form.action_type.value }}</p> <p>-----------------</p>
+
+            <p style= 'overflow:hidden;height:200px; width:20%; overflow-y:scroll;'>
+                {% for f in form.acsepted_symbol_list %}
+                    {{ f }}
+                    <br>
+                {% endfor %}
+            </p>
+
+                <input type="submit" name="action" value="Submit">
+                <input type="submit" name="action" value="set symbol">
+            </form>
+        </div>
+
+</body>
+</html>

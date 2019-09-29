@@ -1,0 +1,14 @@
+{% extends "site_app/base.html" %}
+{% block title %}
+    index
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <P>welcome {{ user.username }}</P>
+        <P><a href="{% url 'logout' %}">logout</a></P>
+    {% else %}
+        <p>for use site you need login</p>
+        <P><a href="{% url 'login' %}">login</a></P>
+    {% endif %}
+{% endblock %}

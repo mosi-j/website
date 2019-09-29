@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}
+    input form
+{% endblock %}
+
+{% block content %}
+
+    <h1>result data</h1>
+
+    {% for opt in output %}
+        {% if opt.2 < 1%}
+            <p>orders:
+            {{ opt.0 }}</p>
+
+            <p>orders beneefit:</p>
+            <p>{{ opt.1 }}</p>
+
+        {% endif %}
+
+    {% endfor %}
+
+
+    {% if output_type > 1 %}
+        <div>
+            <p>if</p>
+            {{ output }}
+        </div>
+    {% else %}
+        <div>
+            <p>else</p>
+            {{ output }}
+        </div>
+
+    {% endif %}
+
+    <div>
+        <p>qqqqq</p>
+        {{ output }}
+    </div>
+
+
+
+
+{% endblock %}

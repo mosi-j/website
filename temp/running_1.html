@@ -1,0 +1,99 @@
+{% load static %}
+<html>
+{% if form.auto_submit.value == 'Submit' %}
+    <head>
+        <title>
+            {{ title }}
+        </title>
+
+        <script type="text/javascript">
+             function load()
+             {
+                  window.document.myform.submit(value="Submit");
+                  return;
+             }
+        </script>
+    </head>
+    <body onload="load()">
+{% else %}
+    <body>
+{% endif %}
+    <div>
+        {% if error_content is not None %}
+            {{ error_content }}
+        {% endif %}
+    </div>
+
+    <div>
+        <form name="myform" action="/run/" method="post">
+            {% csrf_token %}
+
+            <div id="row">
+                <div id="right_field">{{ form.start_date_time.label }}{{ form.start_date_time }}</div>
+                <div id="left_field">{{ form.end_date_time.label }}{{ form.end_date_time }}</div>
+            </div>
+
+            <div id="row">
+                <div id="right_field">{{ form.adjusted_type.label }}{{ form.adjusted_type }}</div>
+                <div id="left_field">{{ form.time_frame.label }}{{ form.time_frame }}</div>
+            </div>
+
+            <div id="row">
+                <div id="right_field">{{ form.max_benefit_up.label }}{{ form.max_benefit_up }}</div>
+                <div id="left_field">{{ form.max_benefit_down.label }}{{ form.max_benefit_down }}</div>
+            </div>
+
+            <div id="row">
+                <div id="right_field">{{ form.order_total.label }}{{ form.order_total }}</div>
+                <div id="left_field">{{ form.order_same.label }}{{ form.order_same }}</div>
+            </div>
+
+            <div id="row">
+                <div id="right_field">{{ form.data_type.label }}{{ form.data_type }}</div>
+            </div>
+
+            <div id="row">
+                <div>
+                    {{ form.output_format.label }}
+                    <div id="right_field" style= 'overflow:hidden;height:200px; width:20%; overflow-y:scroll;'>
+                        {% for f in form.output_format %}
+                            {{ f }}
+                            <br>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div id="row">
+                <div>
+                    {{ form.accepted_symbol_list.label }}
+                    <div id="right_field" style= 'overflow:hidden;height:200px; width:20%; overflow-y:scroll;'>
+                        {% for f in form.accepted_symbol_list %}
+                            {{ f }}
+                            <br>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div id="row">
+                <div id="right_field">{{ form.strategy.label }}{{ form.strategy }}</div>
+            </div>
+
+            <div id="hidden_field">
+                {{ form.auto_submit }}
+                {{ form.username }}
+            </div>
+
+
+            <input type="submit" name="Btn_action" value="Submit">
+            <input type="submit" name="Btn_action" value="load_strategy">
+            <input type="submit" name="Btn_action" value="update_strategy">
+            <input type="submit" name="Btn_action" value="save_strategy">
+            <input type="submit" name="Btn_action" value="test_strategy">
+
+        </form>
+    </div>
+
+</body>
+</html>
